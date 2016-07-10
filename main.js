@@ -37,6 +37,17 @@ $(function() {
       playerAlive = false;
     }
   }
+
+  //   if (carToMove.includes('L')) {
+  //     // console.log('would move L to R');
+  //     carMoveLtoR($(carToMove));
+  //   } else {
+  //     // console.log('would move R to L');
+  //     carMoveRtoL($(carToMove));
+  //   }
+  // }
+
+  
   // function moveCar() {
   //   // for (i=0; i < carsOnScreen.length; i++) {
   //     console.log("Car: "+ carsOnScreen[i] + " would move here...");
@@ -49,8 +60,8 @@ $(function() {
   //     }
   //   }
   // }
-  
-  
+
+
   // function randomCarBottomRow() {
   // // Possible Cars
   //   // var carTopRowOptions = ['topL', 'topR'];
