@@ -4,15 +4,33 @@
   <meta charset="utf-8">
   <title>Test One</title>
   <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <!--Will Cook WDI 21 Project One -->
 </head>
 
 <body>
-<h1>TEST</h1>
-<div class="board">
-  <div id="bike"></div>
-  <div id="car"></div>
+  <div class="topbox">
+    <h1>Bike London</h1>
+    <p>Keep pressing z and x keys to pedal</p>
+  </div>
+  <div class="gameoverhit">
+    <p>Game over you got squashed Carface!</p>
+  </div>
+  <div class="gameoverfelloff">
+    <p>Game over you fell off your bike</p>
+    <p>Next time press z and x to keep peddling to keep your balance</p>
+  </div>
+  <div class="gameoveryouwon">
+    <p>You survived</p>
+  </div> 
+  <div class="board" id="show">
+    <div id="bike"></div>
+  <!-- <div id="car"></div> -->
+    <div>
+    <p id="balancedL">Left Balance: 10</p>
+    <p id="balancedR">Right Balance: 10</p>
+  </div>
 </div>
-<p>Colliding? <span id="result">false</span>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 <script type="text/javascript" src="main.js"></script>
 </body>
