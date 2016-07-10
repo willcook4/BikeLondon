@@ -19,6 +19,13 @@ $(function() {
   var carNumber = 1;
 // The last car moved
 
+var lastCarMoved = "";
+
+// Balanced ()
+  var balancedL = 10;
+  var balancedR = 10;  
+
+
 
 //// ---- Functions ----
 
@@ -116,6 +123,26 @@ $(function() {
         // $(".gameoveryouwon").css("z-index", '0');
         // $(".gameoverfelloff").css("z-index", '0');
       }, 1000);
+    }
+  }
+
+  // Check if the player is balancing
+  function checkIsBalanced () {
+    if (playerAlive) {
+      if (balancedL > 0 && balancedR > 0) {
+        console.log("You are balanced");
+      } else {
+        console.log("You fell off!");
+        playerAlive = false;
+        // setTimeout(function () {
+          // $(".gameoverfelloff").css("z-index", '10');
+          // $(".board").css("z-index", '0');
+          // $(".gameoverhit").css("z-index", '0');
+          // $(".gameoveryouwon").css("z-index", '0');
+          $('.gameoverfelloff').attr('id','show');
+          $('.board').removeAttr('id');
+          // }, 1000);
+      }
     }
   }
 
