@@ -146,7 +146,7 @@ var lastCarMoved = "";
     }
   }
 
-  
+
   // Win function based on surviving a number of cars
   // being generated.
   function checkForWin(){ 
@@ -169,6 +169,49 @@ var lastCarMoved = "";
       // }
     }
   }
+
+  /////
+  function randomCar2() {
+  // function to create a random car
+  //Need to track the car number to know when animation is done
+
+  // Create a car..
+  // Possible Cars
+    var carTopRowOptions = ['topL', 'topR'];
+    var carBottomRowOptions = ['bottomL', 'bottomR'];
+  // Random number generators (0 or 1)
+    var randomNum1 = Math.floor(Math.random()*(1-0+1)+0);
+    var randomNum2 = Math.floor(Math.random()*(1-0+1)+0);
+  // Create a unique car... If a 0 create a top row car, 1 bottom row car
+    if (randomNum2 === 0){  
+      newCar(carTopRowOptions[randomNum1], carNumber);
+    // if (carTopRowOptions[1] === 'topL'){
+      // console.log('topL');
+  // If the car is a top right car then give it the properties
+  // of a top right car.  
+      $( ".car[id*='topR']").css({'background-color': 'blue',
+                                'top': '130px',
+                                'left': '600px'});
+      $( ".car[id*='topL']").css({'background-color': 'violet',
+                                'top': '130px',
+                                'left': '-100px'});
+    } else {
+  // else if the random number is a 1 make a bottom row car
+      newCar(carBottomRowOptions[randomNum1],carNumber);
+      // If the car is a bottom right car then give it the properties
+      // of a bottom right car. 
+      $( ".car[id*='bottomR']").css({'background-color': 'gold',
+                                'top': '320px',
+                                'left': '600px'});
+      $( ".car[id*='bottomL']").css({'background-color': 'green',
+                                'top': '320px',
+                                'left': '-100px'});
+
+    }
+    carNumber +=1;  
+    console.log(carNumber + " car number");
+  }
+
 
 
   // function moveCar() {
