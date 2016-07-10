@@ -37,6 +37,13 @@ $(function() {
       playerAlive = false;
     }
   }
+
+  //   // Create the car
+  //   newCar(carOptions[randomNum]);
+  //   // Variable for random time to move
+  //   // return Math.floor(Math.random() * (max - min + 1)) + min;
+  //   var randomTime = Math.floor(Math.random()*(4000-0+1)+0);
+  
 //// ---- Game ----
 
 // Bike movement control
