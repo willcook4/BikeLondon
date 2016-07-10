@@ -146,6 +146,30 @@ var lastCarMoved = "";
     }
   }
 
+  
+  // Win function based on surviving a number of cars
+  // being generated.
+  function checkForWin(){ 
+    // if (playerAlive) {
+      // The amount of cars to win the level
+      if (numberOfCars === 50) {
+        console.log("You survived - You Won!");
+        // setTimeout(function () {
+          // $(".gameoveryouwon").css("z-index", '10');
+          // $(".board").css("z-index", '0');
+          // $(".gameoverhit").css("z-index", '0');
+          // $(".gameoverfelloff").css("z-index", '0');
+        $('.gameoveryouwon').attr('id','show');
+        $('.board').removeAttr('id');
+        return true;
+        // You won!
+        // }, 1000);
+      } else {
+        return false; // You did not win!
+      // }
+    }
+  }
+
 
   // function moveCar() {
   //   // for (i=0; i < carsOnScreen.length; i++) {
