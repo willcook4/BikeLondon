@@ -229,6 +229,77 @@ var lastCarMoved = "";
     }
   }
 
+
+  
+  function moveCar(carToMove, lastCarMoved) {
+    // for (i=0; i < carsOnScreen.length; i++) {
+      console.log("Car: "+ carToMove + " is the car on the move...");
+      if (carToMove.includes('top')) {
+        console.log("carToMove includes top");
+      } else if (carToMove.includes('bottom')) {
+        console.log("carToMove includes bottom");
+      } else {
+        console.log("carToMove else");
+      }
+      // Find out what the last car moved was... to avoid collisoins
+      if (lastCarMoved === carToMove) {
+        console.log("lastCarMoved === carToMove");
+        // Same Car. Move the car, No collision possible
+        actuallyMoveCar(carToMove);
+        // if (carToMove.includes('L')) {
+        //   // console.log('would move L to R');
+        //   carMoveLtoR($(carToMove));
+        // } else {
+        //   // Car must be from the R, moving it L now...
+        //   // console.log('would move R to L');
+        //   carMoveRtoL($(carToMove));
+        // }
+
+      // Else if both on the same row. Move one then the other.
+      // To avoid collisions       
+      } else if ((lastCarMoved.includes('top') && (carToMove.includes('top'))) && 
+        ((lastCarMoved.includes('L')) && (carToMove.includes('R')))) {
+          console.log("waiting to move TopRCar, TopLCar in the way");
+          // Need to add a wait before moving the car...
+          setTimeout(function(){
+            actuallyMoveCar(carToMove);
+          },5000);
+      
+      } else if ((lastCarMoved.includes('top') && (carToMove.includes('top'))) && 
+        ((lastCarMoved.includes('R')) && (carToMove.includes('L')))) {
+          // Need to add a wait before moving the car...
+          console.log("waiting to move TopLCar, TopRCar in the way");
+          setTimeout(function(){
+            actuallyMoveCar(carToMove);
+          },5000);
+
+      } else if ((lastCarMoved.includes('bottom') && (carToMove.includes('bottom'))) &&
+        ((lastCarMoved.includes('L')) && (carToMove.includes('R')))) {
+          // Need to add a wait before moving the car...
+          console.log("waiting to move BottomRCar, BottomLCar in the way");
+          setTimeout(function(){
+            actuallyMoveCar(carToMove);
+          },5000);
+
+      } else if ((lastCarMoved.includes('bottom') && (carToMove.includes('bottom'))) &&
+        ((lastCarMoved.includes('R')) && (carToMove.includes('L')))) {
+          // Need to add a wait before moving the car...
+          console.log("waiting to move BottomLCar, BottomRCar in the way");
+          setTimeout(function(){
+            actuallyMoveCar(carToMove);
+          },5000);
+
+      } else if (lastCarMoved === "") {
+        // First lastCarMoved will be blank/empty
+        // Just move the car
+        actuallyMoveCar(carToMove);
+      } else {
+        // Not a collision, just move the car
+        actuallyMoveCar(carToMove);
+      }
+    }
+
+
   // function moveCar() {
   //   // for (i=0; i < carsOnScreen.length; i++) {
   //     console.log("Car: "+ carsOnScreen[i] + " would move here...");
