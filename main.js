@@ -98,6 +98,27 @@ $(function() {
   //   }
   // }
 
+  // Do the following if the player has been hit
+  function playerHit($car) {
+    // console.log($car);
+    if ((!playerAlive) || (checkForWin === true)) {
+      // change the color of the bike
+      $bike.css("background-color", "red");
+      console.log($car.attr('id') + " hit the biker");
+      console.log("You Lost");
+      setTimeout(function () {
+        // $('.gameoverhit').attr('show');
+        $('.gameoverhit').attr('id','show');
+        $('.board').removeAttr('id');
+
+        // $(".gameoverhit").css("z-index", '10');
+        // $(".board").css("z-index", '0');
+        // $(".gameoveryouwon").css("z-index", '0');
+        // $(".gameoverfelloff").css("z-index", '0');
+      }, 1000);
+    }
+  }
+
 
   // function moveCar() {
   //   // for (i=0; i < carsOnScreen.length; i++) {
