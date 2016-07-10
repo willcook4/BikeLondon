@@ -8,6 +8,8 @@ $(function() {
 
   
 //// ----  Variables   ----
+// Amount of cars to make in this level+1:
+  var carsToMake = 41;
 // Is the player alive
   var playerAlive = true;
 // Variable to store the bike
@@ -19,8 +21,7 @@ $(function() {
 // Car tracking number
   var carNumber = 1;
 // The last car moved
-
-var lastCarMoved = "";
+ var lastCarMoved = "";
 
 // Balanced ()
   var balancedL = 10;
@@ -29,35 +30,92 @@ var lastCarMoved = "";
 
 //// ---- Functions ----
 
+// Create the random cars for the level.
+  function levelSetup() {
+    console.log("Setting up the Level");
+    for (i = 0; i < carsToMake; i++) {
+      // make random cars
+      randomCar2();
+      // console.log(i);
+    }  
+  }
+
+// function to create a random car
+// Need to track the car number to know when animation is done
+  function randomCar2() {
+  
+  // Create a car..
+  // Possible Cars
+    var carTopRowOptions = ['topL', 'topR'];
+    var carBottomRowOptions = ['bottomL', 'bottomR'];
+  // Random number generators (0 or 1)
+    var randomNum1 = Math.floor(Math.random()*(1-0+1)+0);
+    var randomNum2 = Math.floor(Math.random()*(1-0+1)+0);
+  // Create a unique car... If a 0 create a top row car, 1 bottom row car
+    if (randomNum2 === 0){  
+      newCar(carTopRowOptions[randomNum1], carNumber);
+
+  // If the car is a top right car then give it the properties
+  // of a top right car.  
+      $( ".car[id*='topR']").css({'background-color': 'blue',
+                                'top': '130px',
+                                'left': '600px'});
+      $( ".car[id*='topL']").css({'background-color': 'violet',
+                                'top': '130px',
+                                'left': '-100px'});
+    } else {
+  // else if the random number is a 1 make a bottom row car
+      newCar(carBottomRowOptions[randomNum1],carNumber);
+      // If the car is a bottom right car then give it the properties
+      // of a bottom right car. 
+      $( ".car[id*='bottomR']").css({'background-color': 'gold',
+                                'top': '320px',
+                                'left': '600px'});
+      $( ".car[id*='bottomL']").css({'background-color': 'green',
+                                'top': '320px',
+                                'left': '-100px'});
+
+    }
+    carNumber +=1;  
+    console.log(carNumber + " car number");
+  }
+
 // Create a new car
   function newCar(lane,carTrackingNumber) {
-    // if (lane === "topR") {
     var $car = $("<div class=\"car\" id=\"car" + lane + carTrackingNumber + "\"></div>");
     $(".board").append($car);
     carsOnScreen.push("#car" + lane + carTrackingNumber);
     console.log(carsOnScreen + ' COS');
-    // console.log("making a new " + lane + " car");
-
-    // } else if (lane === "bottomR") {
-    //   var $car = $("<div class=\"car\" id=\"carbottomR\"></div>");
-    //   $(".board").append($car);
-    //   carsOnScreen.push("#carbottomR");
-    //   console.log('making a new bottomR car');
-      
-    // } else if (lane === "bottomL") {
-    //   var $car = $("<div class=\"car\" id=\"carbottomL\"></div>");
-    //   $(".board").append($car);
-    //   console.log('making a new bottomL car');
-    //   carsOnScreen.push("#carbottomL");
-
-    // } else if (lane === "topL") {
-    //   var $car = $("<div class=\"car\" id=\"cartopL\"></div>");
-    //   $(".board").append($car);
-    //   console.log('making a new topL car');
-    //   carsOnScreen.push("#cartopL");
-    // } else {
     numberOfCars += 1;
   }
+
+  // Loop for monitoring and moving the cars
+  function playGame() {
+  // for each car in carsOnScreen[] move it.
+    // Need to record the last car moved
+    // var lastCarMoved = "";
+    // Now moved global
+    for(i=0; (i<carsOnScreen.length-1); i++) {
+      console.log(carsOnScreen[i] + " car on carsOnScreen[i]");
+      // Random time to animate the car for
+      // var randomTime = Math.floor(Math.random() * (10000-1000+1)+1000);
+      lastCarMoved = carsOnScreen[i];
+      console.log(lastCarMoved + " last car moved");
+      if (carsOnScreen[i]) {
+        setInterval((function() {
+            function loop() {
+                console.log('Running Loop' + i);
+                console.log(carsOnScreen[i] + " COS[i] going into moveCar");
+                moveCar(carsOnScreen[i], lastCarMoved);
+            };
+            loop();
+            return loop;
+        }()), 1000);
+      } else {
+        // [i] Must be undefined... if this is running 
+      }
+    }
+  } 
 
   function carMoveRtoL($car) {
     $car.animate({left: "-200px"}, 5000)
@@ -96,21 +154,16 @@ var lastCarMoved = "";
 
   // Do the following if the player has been hit
   function playerHit($car) {
-    // console.log($car);
     if ((!playerAlive) || (checkForWin === true)) {
-      // change the color of the bike
+      // change the color of the bike if hit
       $bike.css("background-color", "red");
       console.log($car.attr('id') + " hit the biker");
       console.log("You Lost");
       setTimeout(function () {
-        // $('.gameoverhit').attr('show');
+        
         $('.gameoverhit').attr('id','show');
         $('.board').removeAttr('id');
 
-        // $(".gameoverhit").css("z-index", '10');
-        // $(".board").css("z-index", '0');
-        // $(".gameoveryouwon").css("z-index", '0');
-        // $(".gameoverfelloff").css("z-index", '0');
       }, 1000);
     }
   }
@@ -123,14 +176,8 @@ var lastCarMoved = "";
       } else {
         console.log("You fell off!");
         playerAlive = false;
-        // setTimeout(function () {
-          // $(".gameoverfelloff").css("z-index", '10');
-          // $(".board").css("z-index", '0');
-          // $(".gameoverhit").css("z-index", '0');
-          // $(".gameoveryouwon").css("z-index", '0');
           $('.gameoverfelloff').attr('id','show');
           $('.board').removeAttr('id');
-          // }, 1000);
       }
     }
   }
@@ -138,73 +185,23 @@ var lastCarMoved = "";
   // Win function based on surviving a number of cars
   // being generated.
   function checkForWin(){ 
-    // if (playerAlive) {
+    
       // The amount of cars to win the level
       if (numberOfCars === 50) {
         console.log("You survived - You Won!");
-        // setTimeout(function () {
-          // $(".gameoveryouwon").css("z-index", '10');
-          // $(".board").css("z-index", '0');
-          // $(".gameoverhit").css("z-index", '0');
-          // $(".gameoverfelloff").css("z-index", '0');
         $('.gameoveryouwon').attr('id','show');
         $('.board').removeAttr('id');
         return true;
         // You won!
-        // }, 1000);
       } else {
         return false; // You did not win!
-      // }
     }
   }
-/////
-function randomCar2() {
-// function to create a random car
-//Need to track the car number to know when animation is done
 
-// Create a car..
-// Possible Cars
-  var carTopRowOptions = ['topL', 'topR'];
-  var carBottomRowOptions = ['bottomL', 'bottomR'];
-// Random number generators (0 or 1)
-  var randomNum1 = Math.floor(Math.random()*(1-0+1)+0);
-  var randomNum2 = Math.floor(Math.random()*(1-0+1)+0);
-// Create a unique car... If a 0 create a top row car, 1 bottom row car
-  if (randomNum2 === 0){  
-    newCar(carTopRowOptions[randomNum1], carNumber);
-  // if (carTopRowOptions[1] === 'topL'){
-    // console.log('topL');
-// If the car is a top right car then give it the properties
-// of a top right car.  
-    $( ".car[id*='topR']").css({'background-color': 'blue',
-                              'top': '130px',
-                              'left': '600px'});
-    $( ".car[id*='topL']").css({'background-color': 'violet',
-                              'top': '130px',
-                              'left': '-100px'});
-  } else {
-// else if the random number is a 1 make a bottom row car
-    newCar(carBottomRowOptions[randomNum1],carNumber);
-    // If the car is a bottom right car then give it the properties
-    // of a bottom right car. 
-    $( ".car[id*='bottomR']").css({'background-color': 'gold',
-                              'top': '320px',
-                              'left': '600px'});
-    $( ".car[id*='bottomL']").css({'background-color': 'green',
-                              'top': '320px',
-                              'left': '-100px'});
 
-  }
-  carNumber +=1;  
-  console.log(carNumber + " car number");
-}
-
-//  get a car from the carsOnScreen list, move it then remove it
-// from the list.
-
-function actuallyMoveCar(carToMove) {
 // If the car is on the Left move it Right
 // Otherwise move it Right 
+function actuallyMoveCar(carToMove) {
 
   if (carToMove.includes('L')) {
     // console.log('would move L to R');
@@ -216,6 +213,8 @@ function actuallyMoveCar(carToMove) {
   }
 }
 
+// Car moving logic, based on what moved before
+// This stops the cars from driving over each other
 function moveCar(carToMove, lastCarMoved) {
   // for (i=0; i < carsOnScreen.length; i++) {
     console.log("Car: "+ carToMove + " is the car on the move...");
@@ -231,14 +230,7 @@ function moveCar(carToMove, lastCarMoved) {
       console.log("lastCarMoved === carToMove");
       // Same Car. Move the car, No collision possible
       actuallyMoveCar(carToMove);
-      // if (carToMove.includes('L')) {
-      //   // console.log('would move L to R');
-      //   carMoveLtoR($(carToMove));
-      // } else {
-      //   // Car must be from the R, moving it L now...
-      //   // console.log('would move R to L');
-      //   carMoveRtoL($(carToMove));
-      // }
+      
 
     // Else if both on the same row. Move one then the other.
     // To avoid collisions       
@@ -285,334 +277,22 @@ function moveCar(carToMove, lastCarMoved) {
   }
 
 
-
-  //   if (carToMove.includes('L')) {
-  //     // console.log('would move L to R');
-  //     carMoveLtoR($(carToMove));
-  //   } else {
-  //     // console.log('would move R to L');
-  //     carMoveRtoL($(carToMove));
-  //   }
-  // }
-
-
-
-// function moveCar() {
-//   // for (i=0; i < carsOnScreen.length; i++) {
-//     console.log("Car: "+ carsOnScreen[i] + " would move here...");
-//     if (carsOnScreen[i].includes('L')) {
-//       // console.log('would move L to R');
-//       carMoveLtoR($(carsOnScreen[i]));
-//     } else {
-//       // console.log('would move R to L');
-//       carMoveRtoL($(carsOnScreen[i]));
-//     }
-//   }
-// }
-
-
-
-// Move that car..
-// On condition that if on the same row they dont go at same time
-
-// Once animation is finished remove the car..
-
-
-/////
-  // function randomCarTopRow() {
-  // // Possible Cars
-  //   var carTopRowOptions = ['topL', 'topR'];
-  //   var carBottomRowOptions = ['bottomL', 'bottomR'];
-  // // randomise which one goes first
-  // // Random number 0 or 1
-  //   var randomNum1 = Math.floor(Math.random()*(1-0+1)+0);
-  //   // var randomNum2 = Math.floor(Math.random()*(1-0+1)+0);
-  //   // console.log(randomNum);
-  //   // console.log(carTopRowOptions[randomNum1]+" top row");
-  //   // console.log(carBottomRowOptions[randomNum2]);
-
-  //   newCar(carTopRowOptions[randomNum1]);
-  //   //   // Variable for random time to move
-  //   //   // return Math.floor(Math.random() * (max - min + 1)) + min;
-  //   var randomTime = Math.floor(Math.random()*(4000-0+1)+0);
-  //   if (carTopRowOptions[randomNum1] === 'topL') {
-  //     carsOnScreen.push("#cartopL");
-  //     // Move  the car right
-  //     carMoveLtoR($("#car" + carTopRowOptions[randomNum1]));
-  //     setTimeout(function(){
-  //       console.log('Removing ' + $("#car" + carTopRowOptions[randomNum1]).attr('id'));
-  //       $("#car" + carTopRowOptions[randomNum1]).stop(true,true);
-  //       $("#car" + carTopRowOptions[randomNum1]).detach();
-  //     },8500);
-  //   } else {
-  //     carsOnScreen.push("#cartopR");
-  //     // Move the car left
-  //     setTimeout(function(){
-  //       carMoveRtoL($("#car" + carTopRowOptions[randomNum1]));  
-  //     },3000);
-  //     setTimeout(function(){
-  //       console.log('Removing ' + $("#car" + carTopRowOptions[randomNum1]).attr('id'));
-  //       $("#car" + carTopRowOptions[randomNum1]).stop(true,true);
-  //       $("#car" + carTopRowOptions[randomNum1]).detach();
-  //     },8500);
-  //   }
-  // };
-
-  // function randomCarBottomRow() {
-  // // Possible Cars
-  //   // var carTopRowOptions = ['topL', 'topR'];
-  //   var carBottomRowOptions = ['bottomL', 'bottomR'];
-  // // randomise which one goes first
-  // // Random number 0 or 1
-  //   // var randomNum1 = Math.floor(Math.random()*(1-0+1)+0);
-  //   var randomNum2 = Math.floor(Math.random()*(1-0+1)+0);
-  //   // console.log(randomNum);
-  //   // console.log(carTopRowOptions[randomNum1]);
-  //   // console.log(carBottomRowOptions[randomNum2] +" bottom row");
-
-  //   newCar(carBottomRowOptions[randomNum2]);
-  //   //   // Variable for random time to move
-  //   //   // return Math.floor(Math.random() * (max - min + 1)) + min;
-  //   var randomTime = Math.floor(Math.random()*(4000-0+1)+0);
-  //   if (carBottomRowOptions[randomNum2] === 'bottomL') {
-  //     carsOnScreen.push("#carbottomL");
-  //     // Move  the car right
-  //     carMoveLtoR($("#car" + carBottomRowOptions[randomNum2]));
-  //     setTimeout(function(){
-  //       $("#car" + carBottomRowOptions[randomNum2]).stop(true,true);
-  //       $("#car" + carBottomRowOptions[randomNum2]).detach();
-  //     },8500);
-  //   } else {
-  //     carsOnScreen.push("#carbottomR");
-  //     // Move the car left
-  //     setTimeout(function(){
-  //       carMoveRtoL($("#car" + carBottomRowOptions[randomNum2]));  
-  //     },3000);
-  //     setTimeout(function(){
-  //       $("#car" + carBottomRowOptions[randomNum2]).stop(true,true);
-  //       $("#car" + carBottomRowOptions[randomNum2]).detach();
-  //     },8500);
-  //   }
-  // };
-  //   // possible cars
-  //   var carOptions = ['topR', 'topL', 'bottomR', 'bottomL']; 
-  //   // // create a random number between 0 and 1
-  //   var randomNum = Math.floor(Math.random()*(4));
-  //   // 
-
-  //   // Create the car
-  //   newCar(carOptions[randomNum]);
-  //   // Variable for random time to move
-  //   // return Math.floor(Math.random() * (max - min + 1)) + min;
-  //   var randomTime = Math.floor(Math.random()*(4000-0+1)+0);
-    
-
-  //   // Both top row cars
-  //   if (carOptions[randomNum] === 'topR' || carOptions[randomNum] === 'bottomR') {
-  //     var topArray = ['topR' + carOptions[randomNum],'topR' + carOptions[randomNum]]
-
-
-  //     setTimeout(function () {
-  //       carMoveRtoL($("#car" + carOptions[randomNum]));
-  //     },randomTime);
-
-  //     setTimeout(function (){
-  //         // ($("#car" + carOptions[randomNum]).remove());
-  //       ($("#car" + carOptions[randomNum]).stop(true,true));  
-  //       ($("#car" + carOptions[randomNum]).detach());
-  //       console.log('removing' + ($("#car" + carOptions[randomNum])));
-  //     },4100);
-      
-  //   } else {
-  //     setTimeout(function () {
-  //       carMoveLtoR($("#car" + carOptions[randomNum]));
-  //     },randomTime);
-  //     setTimeout(function (){
-  //         // ($("#car" + carOptions[randomNum]).remove());
-  //       ($("#car" + carOptions[randomNum]).stop(true,true));
-  //       ($("#car" + carOptions[randomNum]).detach());
-  //       console.log('removing' + ($("#car" + carOptions[randomNum])));
-  //     },4100);
-      
-
-  // }
-  // console.log(randomNum + " randomNum");
-  // console.log(randomTime+ " randomTime");
-  // }
-////////////////////////////////////// !!!!!!!!!!!!!!!!!!!!!
-
 //// ---- Game ----
 
-/// Random game movements
-  // var playCount = 2;   
-
-  // for (i=0; i < 2; i++) {
-  //   console.log("play count " + playCount);
-  //   randomCarTopRow();
-  //   randomCarBottomRow();
-  //   playCount--;
-  // };
-
-
   
-  // return Math.floor(Math.random() * (max - min + 1)) + min;
-  // var randomTime = Math.floor(Math.random() * (10000-1000+1)+1000); 
-  // Make the number of cars in carsToMake
-  // for (i = 0; i < carsToMake; i++) {
-  //   randomCar2();
-    // console.log(i);
-    // moveCar();
-    // setTimeout(function() {
-      // randomCar2();
-      // moveCar();
-    // },randomTime);
-    // carsToMake -=1;
-  // }
-
   // Create the random cars for the level.
-  // Amount of cars to make in this level+1:
-  var carsToMake = 41;
-  // var count = 0;
-  function levelSetup() {
-    console.log("Setting up the Level");
-    for (i = 0; i < carsToMake; i++) {
-      // make random cars
-      randomCar2();
-      // console.log(i);
-    }  
-  }
   levelSetup();
 
-  function playGame() {
-  // for each car in carsOnScreen[] move it.
-    // Need to record the last car moved
-    // var lastCarMoved = "";
-    // Now moved global
-    for(i=0; (i<carsOnScreen.length-1); i++) {
-      console.log(carsOnScreen[i] + " car on carsOnScreen[i]");
-      // Random time to animate the car for
-      // var randomTime = Math.floor(Math.random() * (10000-1000+1)+1000);
-      lastCarMoved = carsOnScreen[i];
-      console.log(lastCarMoved + " last car moved");
-      if (carsOnScreen[i]) {
-        setInterval((function() {
-            function loop() {
-                console.log('Running Loop' + i);
-                console.log(carsOnScreen[i] + " COS[i] going into moveCar");
-                moveCar(carsOnScreen[i], lastCarMoved);
-            };
-            loop();
-            return loop;
-        }()), 1000);
-      } else {
-        // [i] Must be undefined... 
-      }
-    }
-  } 
-  
+  // Get the cars moving
   playGame();
-
-  // setInterval((function() {
-  //     function loop() {
-  //         console.log('One Loop');
-  //         playGame();
-  //     };
-
-  //     loop();
-  //     return loop;
-  // }()), 1000);
-
-  // setInterval(function(){ 
-  //     //code goes here that will be run every 5 seconds.    
-  // }, 5000);
-  // playGame();
-
-  // function playLoop() {
-  //     var rand = Math.round(Math.random() * (20000 - 500)) + 500;
-  //     if (count < 40) {
-  //       console.log(rand+ " rand");      
-  //       //alert('is this working>');
-  //       // Make and move cars
-  //       playGame();
-  //       // // loop this until the count === 40
-  //       playloop();
-  //       count +=1;  
-  //     } else {
-  //       console.log("playLoop done");
-  //     }
-  // }
-  // playLoop();
-
-  // Self invoking function that loops until the count is met
-  // actions happen at random
-  // (function playLoop() {
-  //     var rand = Math.round(Math.random() * (20000 - 500)) + 500;
-  //     if (count<40){
-  //      setTimeout(function() {
-  //         console.log(rand+ " rand");      
-  //         //alert('is this working>');
-  //         // Make and move cars
-  //         playGame();
-  //         // loop this until the count === 40
-  //         playloop();  
-  //       }, rand);
-  //       count +=1;
-  //     } else {
-  //       console.log("playLoop done");
-  //     }
-  // }());
-
-  // now move the cars at random from the cars on screen list
-  // for(i=0; i < carsOnScreen.length; i++) {
-  //   moveCar(carsOnScreen[i]);
-  //   setTimeout(function (){
-  //     carsOnScreen.splice(i,1)
-  //   });
-  // };
-
-  // setTimeout(function(){
-  //   randomCar2();
-  //   setTimeout(function(){
-  //     randomCar2();
-  //     setTimeout(function(){
-  //       randomCar2();
-  //     }, 2000);
-  //   }, 2000);
-  // }, 2000);
-// ----Set Game movements  ----
   
-  // newCar("topR");
-  // // console.log(carsOnScreen);
-  // newCar("bottomR");
-  // // console.log(carsOnScreen);
-  // carMoveRtoL($('#cartopR'));  
-
-  // setTimeout(function () {
-  //   carMoveRtoL($('#carbottomR'));
-  // },1200);
-
-  // setTimeout(function () {
-  //   newCar("bottomL");
-  // }, 3000);
-  
-  // setTimeout(function () {
-  //   carMoveLtoR($('#carbottomL'));
-  // }, 4000);
-
-  // setTimeout(function() {
-  //   newCar("topL");
-  // }, 5000);
-
-  // setTimeout(function() {
-  //   carMoveLtoR($("#cartopL"));
-  // }, 6000);
 
 // Bike movement control
 
   $(document).on("keydown", function(e) {
 
       // Get the position of the bike
-      // Set as a fload to 2dp to do comparison with later
+      // Set as a float to 2dp to do comparison with later
       // for collision detection
     var leftPosition = parseFloat($bike.css("left")).toFixed(2);
     
@@ -627,6 +307,7 @@ function moveCar(carToMove, lastCarMoved) {
       
       case 37: // Left
         if(!playerAlive) {
+          // Return false = player has won or died
           // Ignore the keypress if the player is dead (deactivate keypress)
           return false;
         }
@@ -701,14 +382,6 @@ function moveCar(carToMove, lastCarMoved) {
       }
     
 
-    // // console.log(carsOnScreen.length);
-    // collisionTest2($bike, $('#carbottomR'));
-    
-    // playerHit($('#carbottomR'));
-   
-    // collisionTest($bike, $('#cartopR'));
-    // playerHit($('#cartopR'));
-
   }
   });
 
@@ -716,5 +389,5 @@ function moveCar(carToMove, lastCarMoved) {
 });
 // // End
 
-// ////////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
