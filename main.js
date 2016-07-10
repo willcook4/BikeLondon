@@ -22,6 +22,38 @@ $(function() {
 
 //// ---- Functions ----
 
+
+// Create a new car
+  function newCar(lane,carTrackingNumber) {
+    // if (lane === "topR") {
+    var $car = $("<div class=\"car\" id=\"car" + lane + carTrackingNumber + "\"></div>");
+    $(".board").append($car);
+    carsOnScreen.push("#car" + lane + carTrackingNumber);
+    console.log(carsOnScreen + ' COS');
+    // console.log("making a new " + lane + " car");
+
+    // } else if (lane === "bottomR") {
+    //   var $car = $("<div class=\"car\" id=\"carbottomR\"></div>");
+    //   $(".board").append($car);
+    //   carsOnScreen.push("#carbottomR");
+    //   console.log('making a new bottomR car');
+      
+    // } else if (lane === "bottomL") {
+    //   var $car = $("<div class=\"car\" id=\"carbottomL\"></div>");
+    //   $(".board").append($car);
+    //   console.log('making a new bottomL car');
+    //   carsOnScreen.push("#carbottomL");
+
+    // } else if (lane === "topL") {
+    //   var $car = $("<div class=\"car\" id=\"cartopL\"></div>");
+    //   $(".board").append($car);
+    //   console.log('making a new topL car');
+    //   carsOnScreen.push("#cartopL");
+    // } else {
+    numberOfCars += 1;
+  }
+
+
 // Function to check if the bike has hit a car
 // Returns true if there is a collision
   function collisionTest($bike, $car) {
@@ -44,6 +76,8 @@ $(function() {
       playerAlive = false;
     }
   }
+
+
 
   //   if (carToMove.includes('L')) {
   //     // console.log('would move L to R');
