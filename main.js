@@ -38,12 +38,37 @@ $(function() {
     }
   }
 
+  //   newCar(carBottomRowOptions[randomNum2]);
+  //   //   // Variable for random time to move
+  //   //   // return Math.floor(Math.random() * (max - min + 1)) + min;
+  //   var randomTime = Math.floor(Math.random()*(4000-0+1)+0);
+  //   if (carBottomRowOptions[randomNum2] === 'bottomL') {
+  //     carsOnScreen.push("#carbottomL");
+  //     // Move  the car right
+  //     carMoveLtoR($("#car" + carBottomRowOptions[randomNum2]));
+  //     setTimeout(function(){
+  //       $("#car" + carBottomRowOptions[randomNum2]).stop(true,true);
+  //       $("#car" + carBottomRowOptions[randomNum2]).detach();
+  //     },8500);
+  //   } else {
+  //     carsOnScreen.push("#carbottomR");
+  //     // Move the car left
+  //     setTimeout(function(){
+  //       carMoveRtoL($("#car" + carBottomRowOptions[randomNum2]));  
+  //     },3000);
+  //     setTimeout(function(){
+  //       $("#car" + carBottomRowOptions[randomNum2]).stop(true,true);
+  //       $("#car" + carBottomRowOptions[randomNum2]).detach();
+  //     },8500);
+  //   }
+  // };
+
   //   // Create the car
   //   newCar(carOptions[randomNum]);
   //   // Variable for random time to move
   //   // return Math.floor(Math.random() * (max - min + 1)) + min;
   //   var randomTime = Math.floor(Math.random()*(4000-0+1)+0);
-  
+
 //// ---- Game ----
 
 // Bike movement control
