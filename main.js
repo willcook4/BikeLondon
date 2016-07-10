@@ -47,7 +47,7 @@ $(function() {
   //   }
   // }
 
-  
+
   // function moveCar() {
   //   // for (i=0; i < carsOnScreen.length; i++) {
   //     console.log("Car: "+ carsOnScreen[i] + " would move here...");
@@ -60,6 +60,25 @@ $(function() {
   //     }
   //   }
   // }
+
+  // Move that car..
+  // On condition that if on the same row they dont go at same time
+
+  // Once animation is finished remove the car..
+
+
+  /////
+    // function randomCarTopRow() {
+    // // Possible Cars
+    //   var carTopRowOptions = ['topL', 'topR'];
+    //   var carBottomRowOptions = ['bottomL', 'bottomR'];
+    // // randomise which one goes first
+    // // Random number 0 or 1
+    //   var randomNum1 = Math.floor(Math.random()*(1-0+1)+0);
+    //   // var randomNum2 = Math.floor(Math.random()*(1-0+1)+0);
+    //   // console.log(randomNum);
+    //   // console.log(carTopRowOptions[randomNum1]+" top row");
+    //   // console.log(carBottomRowOptions[randomNum2]);
 
 
   // function randomCarBottomRow() {
