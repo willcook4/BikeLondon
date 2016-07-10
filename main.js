@@ -212,7 +212,22 @@ var lastCarMoved = "";
     console.log(carNumber + " car number");
   }
 
+  //  get a car from the carsOnScreen list, move it then remove it
+  // from the list.
 
+  function actuallyMoveCar(carToMove) {
+  // If the car is on the Left move it Right
+  // Otherwise move it Right 
+
+    if (carToMove.includes('L')) {
+      // console.log('would move L to R');
+      carMoveLtoR($(carToMove));
+    } else {
+      // Car must be from the R, moving it L now...
+      // console.log('would move R to L');
+      carMoveRtoL($(carToMove));
+    }
+  }
 
   // function moveCar() {
   //   // for (i=0; i < carsOnScreen.length; i++) {
