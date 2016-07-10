@@ -9,9 +9,16 @@ $(function() {
 //// ----  Variables   ----
 // Is the player alive
   var playerAlive = true;
-// Variable to store the bike
+// Variable to store the bike  
   var $bike = $('#bike');
-    
+// Count the number of cars on screen
+  var numberOfCars = 0;
+// Keeping track of what cars are on screen
+  var carsOnScreen = [];
+// Car tracking number
+  var carNumber = 1;
+// The last car moved
+
 
 //// ---- Functions ----
 
