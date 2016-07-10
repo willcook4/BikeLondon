@@ -53,6 +53,16 @@ $(function() {
     numberOfCars += 1;
   }
 
+  function carMoveRtoL($car) {
+    $car.animate({left: "-200px"}, 5000)
+    // $car.animate({left: "-500px"}, 2500).delay( 2000 );
+  };
+
+  function carMoveLtoR($car) {
+    $car.animate({left: "600px"}, 5000)
+  };
+
+
 
 // Function to check if the bike has hit a car
 // Returns true if there is a collision
