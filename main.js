@@ -9,7 +9,7 @@ $(function() {
   
 //// ----  Variables   ----
 // Amount of cars to make in this level+1:
-  var carsToMake = 41;
+  var carsToMake = 40;
 // Is the player alive
   var playerAlive = true;
 // Variable to store the bike
@@ -33,7 +33,7 @@ $(function() {
 // Create the random cars for the level.
   function levelSetup() {
     console.log("Setting up the Level");
-    for (i = 0; i < carsToMake; i++) {
+    for (i = 0; i <= carsToMake; i++) {
       // make random cars
       randomCar2();
       // console.log(i);
@@ -72,10 +72,10 @@ $(function() {
 
       $( ".car[id*='bottomL']").css({'background-color': 'green',
                                 'top': '320px',
-                                'left': '-100px'});
+                                'left': '-300px'});
       $( ".car[id*='topL']").css({'background-color': 'violet',
                                 'top': '320px',
-                                'left': '-100px'});
+                                'left': '-300px'});
 
     }
     carNumber +=1;  
@@ -107,22 +107,23 @@ $(function() {
       // var tempI = i;
       // console.log(carsOnScreen[i]);
       if (carsOnScreen[i]) {
-        console.log(i, "if statement");
+        // console.log(i, "if statement");
         (function(i){
-          console.log(i, "playGame");
+          // console.log(i, "playGame");
           setTimeout(function() {
             console.log(i, "setInterval");
+            console.log(carsOnScreen.length);
               // function loop() {
                 // console.log('Running Loop' + i);
                 // console.log(carsOnScreen[i] + " COS[i] going into moveCar");
                 // console.log(i, "moveCar in loop");
-                moveCar(carsOnScreen[i], lastCarMoved);
+            moveCar(carsOnScreen[i], lastCarMoved);
               // loop();
               // return loop;
               // console.log(i, carsOnScreen.length-1);
-              if(i === carsOnScreen.length) {
-                console.log("sequence over");
-              }
+            if(i == carsOnScreen.length-1) {
+              console.log("sequence over");
+            }
           }, 1000 * i);
         }(i));
       } else {
@@ -132,12 +133,12 @@ $(function() {
   } 
 
   function carMoveRtoL($car) {
-    $car.animate({left: "-200px"}, 5000)
+    $car.animate({left: "-400px"}, 5000)
     // $car.animate({left: "-500px"}, 2500).delay( 2000 );
   };
 
   function carMoveLtoR($car) {
-    $car.animate({left: "600px"}, 5000)
+    $car.animate({left: "800px"}, 5000)
   };
 
 
@@ -230,7 +231,7 @@ function actuallyMoveCar(carToMove) {
 // Car moving logic, based on what moved before
 // This stops the cars from driving over each other
 function moveCar(carToMove, lastCarMoved) {
-  console.log("moveCar called");
+  console.log(carToMove + " moving");
   // for (i=0; i < carsOnScreen.length; i++) {
     // console.log("Car: "+ carToMove + " is the car on the move...");
     if (carToMove.includes('top')) {
@@ -255,7 +256,8 @@ function moveCar(carToMove, lastCarMoved) {
         // Need to add a wait before moving the car...
         setTimeout(function(){
           actuallyMoveCar(carToMove);
-        },5000);
+          // console.log("A");
+        },6000);
     
     } else if ((lastCarMoved.includes('top') && (carToMove.includes('top'))) && 
       ((lastCarMoved.includes('R')) && (carToMove.includes('L')))) {
@@ -263,7 +265,8 @@ function moveCar(carToMove, lastCarMoved) {
         // console.log("waiting to move TopLCar, TopRCar in the way");
         setTimeout(function(){
           actuallyMoveCar(carToMove);
-        },5000);
+          // console.log("B");
+        },6000);
 
     } else if ((lastCarMoved.includes('bottom') && (carToMove.includes('bottom'))) &&
       ((lastCarMoved.includes('L')) && (carToMove.includes('R')))) {
@@ -271,7 +274,8 @@ function moveCar(carToMove, lastCarMoved) {
         // console.log("waiting to move BottomRCar, BottomLCar in the way");
         setTimeout(function(){
           actuallyMoveCar(carToMove);
-        },5000);
+          // console.log("C");
+        },6000);
 
     } else if ((lastCarMoved.includes('bottom') && (carToMove.includes('bottom'))) &&
       ((lastCarMoved.includes('R')) && (carToMove.includes('L')))) {
@@ -279,15 +283,18 @@ function moveCar(carToMove, lastCarMoved) {
         // console.log("waiting to move BottomLCar, BottomRCar in the way");
         setTimeout(function(){
           actuallyMoveCar(carToMove);
-        },5000);
+          // console.log("D");
+        },6000);
 
     } else if (lastCarMoved === "") {
       // First lastCarMoved will be blank/empty
       // Just move the car
       actuallyMoveCar(carToMove);
+      // console.log("E");
     } else {
       // Not a collision, just move the car
       actuallyMoveCar(carToMove);
+      // console.log("F");
     }
   }
 
