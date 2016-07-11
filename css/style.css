@@ -15,20 +15,30 @@ h1 {
   width: 100%;
   height: 100px;
 }
+.topbox h1 {
+  text-align: center;
+}
+.topbox p {
+  text-align: center;
+}
+
 .gameoveryouwon {
   width: 500px;
   height: 400px;
   background-color: rgb(0,255,0);
-  margin: 0px;
+  /*margin: 0px;*/
+  margin: 0 auto;
   display: none;
   color: white;
   z-index: -1;
 }
+
 .gameoverfelloff {
   width: 500px;
   height: 400px;
   background-color: rgb(100,80,0);
-  margin: 0px;
+  /*margin: 0px;*/
+  margin: 0 auto;
   display: none;
   color: black;
   z-index: -1;
@@ -37,16 +47,27 @@ h1 {
 .gameoverhit {
   width: 500px;
   height: 400px;
-  background-color: rgb(255,0,0);
-  margin: 0px;
+  /*background-color: rgb(255,0,0);*/
+  background-image: url("../images/gameoverhit.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0 auto;
   display: none;
-  color: black;
   z-index: -1;
-  position: absolute;
+  /*position: absolute;*/
+  position: relative;
 }
+
+.gameoverhit p {
+  color: rgb(243,12,26);
+  text-align: center;
+  font-size:32px;
+}
+
 .board {
   width: 500px;
   height: 500px;
+  /*position: absolute;*/
   position: relative;
   background-color: grey;
   margin: 0 auto;
@@ -75,7 +96,9 @@ h1 {
 .car {
   width: 230px;
   height: 100px;
-  background-color: black;
+  /*background-color: black;*/
+  background-size: cover;
+  background-repeat: no-repeat;
   position: absolute;
   margin: 0px;
   /*padding: 0px;*/
@@ -84,7 +107,10 @@ h1 {
 #cartopR {
   /*width: 100px;
   height: 100px;*/
-  background-color: blue;                     
+  /*background-color: blue;*/
+  /*background-image: url("../images/blackcab.png");*/
+  /*background-size: cover;*/
+  /*background-repeat: no-repeat;*/
   /*position: absolute; */
   top: 130px;
   left: 600px;

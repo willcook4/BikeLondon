@@ -57,10 +57,16 @@ $(function() {
 
   // If the car is a right starting car then give it the properties
   // of a right car.  
-      $( ".car[id*='topR']").css({'background-color': 'blue',
+      // $( ".car[id*='topR']").css({'background-color': 'blue',
+      //                           'top': '130px',
+      //                           'left': '600px'});
+      // $( ".car[id*='bottomR']").css({'background-color': 'gold',
+      //                           'top': '130px',
+      //                           'left': '600px'});
+      $( ".car[id*='topR']").css({'background-image': 'url("./images/blackcab.png")',
                                 'top': '130px',
                                 'left': '600px'});
-      $( ".car[id*='bottomR']").css({'background-color': 'gold',
+      $( ".car[id*='bottomR']").css({'background-image': 'url("./images/bluecar.png")',
                                 'top': '130px',
                                 'left': '600px'});
       
@@ -70,7 +76,7 @@ $(function() {
       // If the car is a Left starting car then give it the properties
       // of a left car. 
 
-      $( ".car[id*='bottomL']").css({'background-color': 'green',
+      $( ".car[id*='bottomL']").css({'background-image': 'url("./images/greencar.png")',
                                 'top': '320px',
                                 'left': '-300px'});
       $( ".car[id*='topL']").css({'background-color': 'violet',
