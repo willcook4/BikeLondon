@@ -102,7 +102,7 @@ $(function() {
 
 // Play again
   function playAgain() {
-    // Reset the page
+    // Reset the page 
     console.log('playAgain running...');
     location.reload(true);
   }
@@ -194,8 +194,9 @@ $(function() {
       $bike.css("background-color", "red");
       console.log($car.attr('id') + " hit the biker");
       console.log("You Lost");
-      var audio = new Audio("./audio/crash.wav");
-      audio.play(); 
+      // Play sound fx [removed due to duplicate play]
+      // var audio = new Audio("./audio/crash.wav");
+      // audio.play(); 
       setTimeout(function () {
         
         $('.gameoverhit').attr('id','show');
@@ -241,6 +242,8 @@ $(function() {
     console.log("You survived - You Won!");
     $('.gameoveryouwon').attr('id','show');
     $('.board').removeAttr('id');
+    var audio = new Audio("./audio/bikebell.wav");
+    audio.play();
     playerWon = true;
   }
 
@@ -397,10 +400,20 @@ function moveCar(carToMove, lastCarMoved) {
     switch(e.which) {
       case 90: // Left Balancing key (z key)
         balancedL +=0.8;
+        if (balancedL < 10) {
+          $('#balancedL').css('color', 'red');
+        } else {
+          $('#balancedL').css('color', 'blue');
+        }
         break;
       
       case 88: // Right Balancing key (x key) 
         balancedR +=0.8;
+        if (balancedR < 10) {
+          $('#balancedR').css('color', 'red');
+        } else {
+          $('#balancedR').css('color', 'blue');
+        }
       break;
       
       case 37: // Left
@@ -419,6 +432,11 @@ function moveCar(carToMove, lastCarMoved) {
           $bike.css("left", "-=25px");
         }
         balancedL -=1;
+        if (balancedL < 10) {
+          $('#balancedL').css('color', 'red');
+        } else {
+          $('#balancedL').css('color', 'blue');
+        }
         break;
       case 38 : // Up
         if(!playerAlive) {
@@ -434,6 +452,11 @@ function moveCar(carToMove, lastCarMoved) {
           console.log("You can't go Up anymore!");
         }
         balancedL -=1;
+        if (balancedL < 10) {
+          $('#balancedL').css('color', 'red');
+        } else {
+          $('#balancedL').css('color', 'blue');
+        }
         break;
       
       case 39: // Right
@@ -451,7 +474,12 @@ function moveCar(carToMove, lastCarMoved) {
           $bike.css("left", "+=20px");
           // collisionYes();
         }
-        balancedR -=1; 
+        balancedR -=1;
+        if (balancedR < 10) {
+          $('#balancedR').css('color', 'red');
+        } else {
+          $('#balancedR').css('color', 'blue');
+        } 
         break;
       case 40: // Down
         if(!playerAlive) {
@@ -465,6 +493,11 @@ function moveCar(carToMove, lastCarMoved) {
           $bike.css("top", "+=32px");
         }
         balancedR -=1; 
+        if (balancedR < 10) {
+          $('#balancedR').css('color', 'red');
+        } else {
+          $('#balancedR').css('color', 'blue');
+        }
         break;
       default:
     }
