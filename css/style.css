@@ -1,9 +1,14 @@
 h1 {
-  color: red;
+  color: orange;
+  font-family: 'Bangers', cursive;
+  font-size: 72px;
+  margin: 5px;
 }
 
 #balance {
   text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 33px;
 }
 
 #balancedL {
@@ -35,7 +40,7 @@ h1 {
 
 .gameoveryouwon {
   width: 500px;
-  height: 400px;
+  height: 500px;
   background-color: rgb(0,255,0);
   /*margin: 0px;*/
   margin: 0 auto;
@@ -43,11 +48,12 @@ h1 {
   color: white;
   z-index: -1;
   position: relative;
+  border-radius: 20px;
 }
 
 .gameoverfelloff {
   width: 500px;
-  height: 400px;
+  height: 500px;
   background-color: rgb(100,80,0);
   /*margin: 0px;*/
   margin: 0 auto;
@@ -55,10 +61,11 @@ h1 {
   color: black;
   z-index: -1;
   position: relative;
+  border-radius: 20px;
 }
 .gameoverhit {
   width: 500px;
-  height: 400px;
+  height: 500px;
   /*background-color: rgb(255,0,0);*/
   background-image: url("../images/gameoverhit.jpg");
   background-size: cover;
@@ -68,6 +75,7 @@ h1 {
   z-index: -1;
   /*position: absolute;*/
   position: relative;
+  border-radius: 20px;
 }
 
 .gameoverhit p {
@@ -103,6 +111,7 @@ h1 {
   z-index: 10;
   display: none;
   overflow: hidden;
+  border-radius: 20px;
 }
 
 /*.board p {
@@ -183,4 +192,5 @@ h1 {
      width:100%;
      /*background: yellow;*/
      text-align: center;
+     padding-bottom: 75px;
 }
