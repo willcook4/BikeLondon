@@ -1,6 +1,11 @@
 h1 {
   color: red;
 }
+
+#balance {
+  text-align: center;
+}
+
 #balancedL {
   color: blue;
   font-size: 24px;
@@ -37,6 +42,7 @@ h1 {
   display: none;
   color: white;
   z-index: -1;
+  position: relative;
 }
 
 .gameoverfelloff {

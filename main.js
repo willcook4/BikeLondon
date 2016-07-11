@@ -12,6 +12,8 @@ $(function() {
   var carsToMake = 40;
 // Is the player alive
   var playerAlive = true;
+// has the player won?
+  var playerWon = false;
 // Variable to store the bike
   var $bike = $('#bike');
 // Count the number of cars on screen
@@ -21,7 +23,7 @@ $(function() {
 // Car tracking number
   var carNumber = 1;
 // The last car moved
- var lastCarMoved = "";
+  var lastCarMoved = "";
 
 // Balanced ()
   var balancedL = 10;
@@ -29,6 +31,7 @@ $(function() {
 
 
 //// ---- Functions ----
+
 
 // Create the random cars for the level.
   function levelSetup() {
@@ -97,6 +100,13 @@ $(function() {
     numberOfCars += 1;
   }
 
+// Play again
+  function playAgain() {
+    // Reset the page
+    console.log('playAgain running...');
+    location.reload(true);
+  }
+
   // Loop for monitoring and moving the cars
   function playGame() {
   // for each car in carsOnScreen[] move it.
@@ -129,7 +139,9 @@ $(function() {
               // console.log(i, carsOnScreen.length-1);
             if(i == carsOnScreen.length-1) {
               console.log("sequence over");
-              youWon();
+              if (playerAlive === true) {
+                youWon();
+              }
             }
           }, 1000 * i);
         }(i));
@@ -225,7 +237,7 @@ $(function() {
     console.log("You survived - You Won!");
     $('.gameoveryouwon').attr('id','show');
     $('.board').removeAttr('id');
-    return true;
+    playerWon = true;
   }
 
 
@@ -242,6 +254,7 @@ function actuallyMoveCar(carToMove) {
     carMoveRtoL($(carToMove));
   }
 }
+
 
 // Car moving logic, based on what moved before
 // This stops the cars from driving over each other
@@ -353,6 +366,19 @@ function moveCar(carToMove, lastCarMoved) {
   // Get the cars moving
   playGame();
   
+// Event Listeners
+  // Game over hit...
+  $('.gameoverhit').click(function() {
+    playAgain();
+  })
+  // Game over fell off...
+  $('.gameoverfelloff').click(function() {
+    playAgain();
+  })
+  // Game over fell off...
+  $('.gameoveryouwon').click(function() {
+    playAgain();
+  })
 
 // Bike movement control
 
@@ -384,7 +410,8 @@ function moveCar(carToMove, lastCarMoved) {
           // Set the maximum left gameplay distance you can go
           console.log("You can't go left anymore!");
         } else {
-          console.log("Going left")
+          console.log("Going left");
+          e.preventDefault();
           $bike.css("left", "-=25px");
         }
         balancedL -=1;
@@ -416,7 +443,8 @@ function moveCar(carToMove, lastCarMoved) {
           console.log("You can't go right anymore!");
         } else {
           console.log("Going right")
-          $bike.css("left", "+=1px");
+          e.preventDefault();
+          $bike.css("left", "+=20px");
           // collisionYes();
         }
         balancedR -=1; 
@@ -443,9 +471,11 @@ function moveCar(carToMove, lastCarMoved) {
 
     // Log the players balance points to the screen
     // console.log(parseFloat(balancedL).toFixed(1));
-    $('#balancedL').text("Left Balance: " + parseFloat(balancedL).toFixed(1));
+    // $('#balancedL').text("Left Balance: " + parseFloat(balancedL).toFixed(1));
+    $('#balancedL').text(parseFloat(balancedL).toFixed(1) + " ");
     // console.log(balancedR);
-    $('#balancedR').text("Right Balance: " + parseFloat(balancedR).toFixed(1));
+    // $('#balancedR').text("Right Balance: " + parseFloat(balancedR).toFixed(1));
+    $('#balancedR').text(" " + parseFloat(balancedR).toFixed(1));
     // console.log(carsOnScreen+" COS");
     // console.log(playerAlive);
     // console.log(checkForWin);
@@ -461,11 +491,8 @@ function moveCar(carToMove, lastCarMoved) {
       // If the player has been hit the following will create action
         playerHit($(carsOnScreen[i]));
       }
-    
-
   }
   });
-
 // // Close of the self-init function
 });
 // // End
