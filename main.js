@@ -323,6 +323,7 @@ function moveCar(carToMove, lastCarMoved) {
       // Set as a float to 2dp to do comparison with later
       // for collision detection
     var leftPosition = parseFloat($bike.css("left")).toFixed(2);
+    var topPosition = parseFloat($bike.css("top")).toFixed(2);
     
     switch(e.which) {
       case 90: // Left Balancing key (z key)
@@ -353,8 +354,15 @@ function moveCar(carToMove, lastCarMoved) {
         if(!playerAlive) {
           return false;
         }
+        console.log("up pressed");
+        if (topPosition > 115) {
+        // Set the maximum height up the screen the bike can go
         //console.log(playerAlive);
-        $bike.css("top", "-=45px");
+          console.log("going up");
+          $bike.css("top", "-=45px");
+        } else {
+          console.log("You can't go Up anymore!");
+        }
         balancedL -=1;
         break;
       
@@ -378,7 +386,13 @@ function moveCar(carToMove, lastCarMoved) {
         if(!playerAlive) {
           return false;
         }
-        $bike.css("top", "+=32px");
+        console.log("Down key pressed");
+        if (topPosition > 350) {
+          console.log("You can't go Down anymore!");
+        } else {
+          console.log("Going Down");
+          $bike.css("top", "+=32px");
+        }
         balancedR -=1; 
         break;
       default:

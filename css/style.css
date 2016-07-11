@@ -42,7 +42,7 @@ h1 {
   display: none;
   color: black;
   z-index: -1;
-  position: absolute;
+  position: relative;
 }
 .gameoverhit {
   width: 500px;
