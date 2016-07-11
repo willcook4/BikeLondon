@@ -24,8 +24,7 @@ $(function() {
   var carNumber = 1;
 // The last car moved
   var lastCarMoved = "";
-
-// Balanced ()
+// Store the Balance numbers 
   var balancedL = 10;
   var balancedR = 10;  
 
@@ -43,7 +42,7 @@ $(function() {
     }  
   }
 
-// function to create a random car
+// Function to create a random car
 // Need to track the car number to know when animation is done
   function randomCar2() {
   
@@ -107,7 +106,7 @@ $(function() {
     location.reload(true);
   }
 
-  // Loop for monitoring and moving the cars
+// Loop for monitoring and moving the cars
   function playGame() {
   // for each car in carsOnScreen[] move it.
     // Need to record the last car moved
@@ -151,18 +150,21 @@ $(function() {
     }
   } 
 
+// Animation to move the car Right to Left 
   function carMoveRtoL($car) {
     $car.animate({left: "-400px"}, 5000)
     // $car.animate({left: "-500px"}, 2500).delay( 2000 );
   };
 
+// Animation to move the car Left to Right
   function carMoveLtoR($car) {
     $car.animate({left: "800px"}, 5000)
   };
 
 
 // Function to check if the bike has hit a car
-// Returns true if there is a collision
+// Returns true if there is a collision between
+// top and the object and left and the object.
   function collisionTest($bike, $car) {
     var x1 = $bike.offset().left;
     var y1 = $bike.offset().top;
@@ -186,7 +188,7 @@ $(function() {
     }
   }
 
-  // Do the following if the player has been hit
+// Do the following if the player has been hit...
   function playerHit($car) {
     // if ((!playerAlive) || (checkForWin === true)) {
     if (!playerAlive) {  
@@ -208,7 +210,7 @@ $(function() {
     }
   }
 
-  // Check if the player is balancing
+// Check if the player is balancing
   function checkIsBalanced () {
     if (playerAlive) {
       if (balancedL > 0 && balancedR > 0) {
@@ -227,8 +229,8 @@ $(function() {
     }
   }
 
-  // Win function based on surviving a number of cars
-  // being generated.
+// Win function based on surviving a number of cars
+// being generated.
   function checkForWin() { 
     
       // The amount of cars to win the level
@@ -243,6 +245,7 @@ $(function() {
     }
   }
 
+// Function to take action if the player has won 
   function youWon() { 
     console.log("You survived - You Won!");
     $('.gameoveryouwon').attr('id','show');
@@ -371,7 +374,6 @@ function moveCar(carToMove, lastCarMoved) {
 
 //// ---- Game ----
 
-  
   // Create the random cars for the level.
   levelSetup();
 
@@ -387,7 +389,7 @@ function moveCar(carToMove, lastCarMoved) {
   $('.gameoverfelloff').click(function() {
     playAgain();
   })
-  // Game over fell off...
+  // Game over you won...
   $('.gameoveryouwon').click(function() {
     playAgain();
   })
