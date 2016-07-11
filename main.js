@@ -79,7 +79,7 @@ $(function() {
 
     }
     carNumber +=1;  
-    console.log(carNumber + " car number");
+    // console.log(carNumber + " car number");
   }
 
 // Create a new car
@@ -97,27 +97,32 @@ $(function() {
     // Need to record the last car moved
     // var lastCarMoved = "";
     // Now moved global
-    for(i=0; (i<carsOnScreen.length-1); i++) {
+    for(i=0;i<carsOnScreen.length; i++) {
       // console.log(carsOnScreen.length);
       // console.log(carsOnScreen[i] + " car on carsOnScreen[i]");
       // Random time to animate the car for
       // var randomTime = Math.floor(Math.random() * (10000-1000+1)+1000);
       lastCarMoved = carsOnScreen[i];
       // console.log(lastCarMoved + " last car moved");
+      // var tempI = i;
+      // console.log(carsOnScreen[i]);
       if (carsOnScreen[i]) {
+        console.log(i, "if statement");
         (function(i){
           console.log(i, "playGame");
-          setInterval(function() {
+          setTimeout(function() {
+            console.log(i, "setInterval");
               // function loop() {
                 // console.log('Running Loop' + i);
                 // console.log(carsOnScreen[i] + " COS[i] going into moveCar");
-                console.log(i, "moveCar in loop");
+                // console.log(i, "moveCar in loop");
                 moveCar(carsOnScreen[i], lastCarMoved);
               // loop();
               // return loop;
-              // if(i === carsOnScreen.length) {
-              //   console.log("sequence over");
-              // }
+              // console.log(i, carsOnScreen.length-1);
+              if(i === carsOnScreen.length) {
+                console.log("sequence over");
+              }
           }, 1000 * i);
         }(i));
       } else {
