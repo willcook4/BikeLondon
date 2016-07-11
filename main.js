@@ -194,6 +194,8 @@ $(function() {
       $bike.css("background-color", "red");
       console.log($car.attr('id') + " hit the biker");
       console.log("You Lost");
+      var audio = new Audio("./audio/crash.wav");
+      audio.play(); 
       setTimeout(function () {
         
         $('.gameoverhit').attr('id','show');
@@ -210,6 +212,8 @@ $(function() {
         console.log("You are balanced");
       } else {
         console.log("You fell off!");
+        var audio = new Audio("./audio/bikefallover.wav");
+        audio.play();
         playerAlive = false;
           $('.gameoverfelloff').attr('id','show');
           $('.board').removeAttr('id');
