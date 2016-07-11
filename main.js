@@ -348,7 +348,7 @@ function moveCar(carToMove, lastCarMoved) {
           return false;
         }
         //console.log(playerAlive);
-        $bike.css("top", "-=50px");
+        $bike.css("top", "-=45px");
         balancedL -=1;
         break;
       
@@ -372,7 +372,7 @@ function moveCar(carToMove, lastCarMoved) {
         if(!playerAlive) {
           return false;
         }
-        $bike.css("top", "+=50px");
+        $bike.css("top", "+=32px");
         balancedR -=1; 
         break;
       default:
