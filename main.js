@@ -46,8 +46,8 @@ $(function() {
   
   // Create a car..
   // Possible Cars
-    var carTopRowOptions = ['topL', 'topR'];
-    var carBottomRowOptions = ['bottomL', 'bottomR'];
+    var carTopRowOptions = ['topR', 'bottomR'];
+    var carBottomRowOptions = ['topL', 'bottomL'];
   // Random number generators (0 or 1)
     var randomNum1 = Math.floor(Math.random()*(1-0+1)+0);
     var randomNum2 = Math.floor(Math.random()*(1-0+1)+0);
@@ -55,23 +55,25 @@ $(function() {
     if (randomNum2 === 0){  
       newCar(carTopRowOptions[randomNum1], carNumber);
 
-  // If the car is a top right car then give it the properties
-  // of a top right car.  
+  // If the car is a right starting car then give it the properties
+  // of a right car.  
       $( ".car[id*='topR']").css({'background-color': 'blue',
                                 'top': '130px',
                                 'left': '600px'});
-      $( ".car[id*='topL']").css({'background-color': 'violet',
+      $( ".car[id*='bottomR']").css({'background-color': 'gold',
                                 'top': '130px',
-                                'left': '-100px'});
+                                'left': '600px'});
+      
     } else {
   // else if the random number is a 1 make a bottom row car
       newCar(carBottomRowOptions[randomNum1],carNumber);
-      // If the car is a bottom right car then give it the properties
-      // of a bottom right car. 
-      $( ".car[id*='bottomR']").css({'background-color': 'gold',
-                                'top': '320px',
-                                'left': '600px'});
+      // If the car is a Left starting car then give it the properties
+      // of a left car. 
+
       $( ".car[id*='bottomL']").css({'background-color': 'green',
+                                'top': '320px',
+                                'left': '-100px'});
+      $( ".car[id*='topL']").css({'background-color': 'violet',
                                 'top': '320px',
                                 'left': '-100px'});
 
