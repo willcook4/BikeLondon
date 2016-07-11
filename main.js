@@ -214,12 +214,15 @@ $(function() {
       if (balancedL > 0 && balancedR > 0) {
         console.log("You are balanced");
       } else {
+        $($bike).css({'background-image': 'url("./images/fallover.png'});
         console.log("You fell off!");
         var audio = new Audio("./audio/bikefallover.wav");
         audio.play();
         playerAlive = false;
+        setTimeout(function () {
           $('.gameoverfelloff').attr('id','show');
           $('.board').removeAttr('id');
+        }, 1000);
       }
     }
   }
