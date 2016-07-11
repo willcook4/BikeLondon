@@ -129,6 +129,7 @@ $(function() {
               // console.log(i, carsOnScreen.length-1);
             if(i == carsOnScreen.length-1) {
               console.log("sequence over");
+              youWon();
             }
           }, 1000 * i);
         }(i));
@@ -175,7 +176,8 @@ $(function() {
 
   // Do the following if the player has been hit
   function playerHit($car) {
-    if ((!playerAlive) || (checkForWin === true)) {
+    // if ((!playerAlive) || (checkForWin === true)) {
+    if (!playerAlive) {  
       // change the color of the bike if hit
       $bike.css("background-color", "red");
       console.log($car.attr('id') + " hit the biker");
@@ -205,7 +207,7 @@ $(function() {
 
   // Win function based on surviving a number of cars
   // being generated.
-  function checkForWin(){ 
+  function checkForWin() { 
     
       // The amount of cars to win the level
       if (numberOfCars === 50) {
@@ -213,10 +215,17 @@ $(function() {
         $('.gameoveryouwon').attr('id','show');
         $('.board').removeAttr('id');
         return true;
-        // You won!
+        //You won!
       } else {
         return false; // You did not win!
     }
+  }
+
+  function youWon() { 
+    console.log("You survived - You Won!");
+    $('.gameoveryouwon').attr('id','show');
+    $('.board').removeAttr('id');
+    return true;
   }
 
 
@@ -241,13 +250,13 @@ function moveCar(carToMove, lastCarMoved) {
   console.log(lastCarMoved + " lastCarMoved");
   // for (i=0; i < carsOnScreen.length; i++) {
     // console.log("Car: "+ carToMove + " is the car on the move...");
-    if (carToMove.includes('top')) {
-      // console.log("carToMove includes top");
-    } else if (carToMove.includes('bottom')) {
-      // console.log("carToMove includes bottom");
-    } else {
-      // console.log("carToMove else");
-    }
+    // if (carToMove.includes('top')) {
+    //   // console.log("carToMove includes top");
+    // } else if (carToMove.includes('bottom')) {
+    //   // console.log("carToMove includes bottom");
+    // } else {
+    //   // console.log("carToMove else");
+    // }
     // Find out what the last car moved was... to avoid collisoins
     if (lastCarMoved === carToMove) {
       // console.log("lastCarMoved === carToMove");
@@ -301,31 +310,34 @@ function moveCar(carToMove, lastCarMoved) {
 
     // Same row conflict
     } else if ((lastCarMoved.includes("topL") && (carToMove.includes('bottomL')))) {
+      console.log("Green Car waiting on Yellow Car");
       setTimeout(function(){
         actuallyMoveCar(carToMove);
       }, 6000);
 
     // Same row conflict
     } else if ((lastCarMoved.includes("bottomL") && (carToMove.includes('topL')))) {
+      console.log("Yellow Car waiting on Green Car");
       setTimeout(function(){
         actuallyMoveCar(carToMove);
       }, 6000);
 
     // Same row conflict
     } else if ((lastCarMoved.includes("bottomR") && (carToMove.includes('topR')))) {
+      console.log("Blue Car waiting on Black Car");
       setTimeout(function(){
         actuallyMoveCar(carToMove);
       }, 6000);
 
     // Same row conflict
     } else if ((lastCarMoved.includes("topR") && (carToMove.includes('bottomR')))) {
+      console.log("Black Car waiting on Blue Car");
       setTimeout(function(){
         actuallyMoveCar(carToMove);
       }, 6000);
 
     // Not a collision, just move the car 
     } else {
-      
       actuallyMoveCar(carToMove);
       // console.log("F");
     }
@@ -427,7 +439,7 @@ function moveCar(carToMove, lastCarMoved) {
     // Check if the player has balance points above 0
     checkIsBalanced();
     // Check if the player has won
-    checkForWin();
+    // checkForWin();
 
     // Log the players balance points to the screen
     // console.log(parseFloat(balancedL).toFixed(1));
@@ -437,8 +449,8 @@ function moveCar(carToMove, lastCarMoved) {
     // console.log(carsOnScreen+" COS");
     // console.log(playerAlive);
     // console.log(checkForWin);
-    if (playerAlive && !(checkForWin())) {
-   
+    // if (playerAlive && !(checkForWin())) {
+    if (playerAlive) {
 
     // Call the test to see if a collision has happened
     // Collision test for each element(-bike) on sceen. 
