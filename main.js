@@ -191,9 +191,11 @@ $(function() {
     // if ((!playerAlive) || (checkForWin === true)) {
     if (!playerAlive) {  
       // change the color of the bike if hit
-      $bike.css("background-color", "red");
+      // $bike.css("background-color", "red");
+      $($bike).css({'background-image': 'url("./images/bikered.png'});
       console.log($car.attr('id') + " hit the biker");
       console.log("You Lost");
+
       // Play sound fx [removed due to duplicate play]
       // var audio = new Audio("./audio/crash.wav");
       // audio.play(); 
@@ -403,7 +405,7 @@ function moveCar(carToMove, lastCarMoved) {
         if (balancedL < 10) {
           $('#balancedL').css('color', 'red');
         } else {
-          $('#balancedL').css('color', 'blue');
+          $('#balancedL').css('color', 'rgb(46, 111, 200)');
         }
         break;
       
@@ -412,7 +414,7 @@ function moveCar(carToMove, lastCarMoved) {
         if (balancedR < 10) {
           $('#balancedR').css('color', 'red');
         } else {
-          $('#balancedR').css('color', 'blue');
+          $('#balancedR').css('color', 'rgb(46, 111, 200)');
         }
       break;
       
@@ -435,7 +437,7 @@ function moveCar(carToMove, lastCarMoved) {
         if (balancedL < 10) {
           $('#balancedL').css('color', 'red');
         } else {
-          $('#balancedL').css('color', 'blue');
+          $('#balancedL').css('color', 'rgb(46, 111, 200)');
         }
         break;
       case 38 : // Up
@@ -455,7 +457,7 @@ function moveCar(carToMove, lastCarMoved) {
         if (balancedL < 10) {
           $('#balancedL').css('color', 'red');
         } else {
-          $('#balancedL').css('color', 'blue');
+          $('#balancedL').css('color', 'rgb(46, 111, 200)');
         }
         break;
       
@@ -478,7 +480,7 @@ function moveCar(carToMove, lastCarMoved) {
         if (balancedR < 10) {
           $('#balancedR').css('color', 'red');
         } else {
-          $('#balancedR').css('color', 'blue');
+          $('#balancedR').css('color', 'rgb(46, 111, 200)');
         } 
         break;
       case 40: // Down
@@ -496,7 +498,7 @@ function moveCar(carToMove, lastCarMoved) {
         if (balancedR < 10) {
           $('#balancedR').css('color', 'red');
         } else {
-          $('#balancedR').css('color', 'blue');
+          $('#balancedR').css('color', 'rgb(46, 111, 200)');
         }
         break;
       default:

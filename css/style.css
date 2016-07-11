@@ -1,5 +1,5 @@
 h1 {
-  color: orange;
+  color: rgb(46, 111, 200);
   font-family: 'Bangers', cursive;
   font-size: 72px;
   margin: 5px;
@@ -12,13 +12,13 @@ h1 {
 }
 
 #balancedL {
-  color: blue;
+  color: rgb(46, 111, 200);
   font-size: 24px;
   text-align: left;
 }
 
 #balancedR {
-  color: blue;
+  color: rgb(46, 111, 200);
   font-size: 24px;
   text-align: right;
 }
@@ -30,6 +30,7 @@ h1 {
 .topbox {
   width: 100%;
   height: 100px;
+  margin-bottom: -10px;
 }
 .topbox h1 {
   text-align: center;
@@ -41,20 +42,42 @@ h1 {
 .gameoveryouwon {
   width: 500px;
   height: 500px;
-  background-color: rgb(0,255,0);
+  background-image: url("../images/gameoveryouwon.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   /*margin: 0px;*/
   margin: 0 auto;
   display: none;
-  color: white;
+  color: color: rgb(46, 111, 200);
   z-index: -1;
   position: relative;
   border-radius: 20px;
 }
 
+.gameoveryouwon h3 {
+   color: rgb(46, 111, 200);
+   font-size: 39px;
+   font-family: 'Abel', sans-serif;
+   text-align: left;
+   margin: 0px 0px 0px 68px;
+}
+
+.gameoveryouwon p {
+  color: rgb(46, 111, 200);
+  font-size: 39px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: 342px 0px 0px 122px;
+  width:  255px;
+  background: rgba(255,255,255,0.6);
+}
+
 .gameoverfelloff {
   width: 500px;
   height: 500px;
-  background-color: rgb(100,80,0);
+  background-image: url("../images/gameoverfellover.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   /*margin: 0px;*/
   margin: 0 auto;
   display: none;
@@ -63,6 +86,37 @@ h1 {
   position: relative;
   border-radius: 20px;
 }
+
+.gameoverfelloff h3 {
+  color: rgb(46, 111, 200);
+  font-size: 39px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: 0px 5px 0px 30px;
+}
+#doyouneed {
+  color: rgb(46,111,200);
+  font-size: 28px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: 0px 5px 0px 155px;
+}
+.gameoverfelloff p {
+  color: rgb(46, 111, 200);
+  font-size: 39px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: -39px 0px 0px 122px;
+}
+.gameoverfelloff h4 {
+  color: rgb(46, 111, 200);
+  font-size: 16px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: 383px 0px 30px 72px;
+  color: darkred;
+}
+
 .gameoverhit {
   width: 500px;
   height: 500px;
@@ -80,9 +134,31 @@ h1 {
 
 .gameoverhit p {
   color: rgb(243,12,26);
-  text-align: center;
-  font-size:32px;
+  font-size: 32px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: 0px 20px 30px 40px;
+  background-color: rgba(0,0,0,0.6);
+  width: 226px;
 }
+  
+
+.gameoverhit h3 {
+  color: rgb(241,184,42);
+  font-size: 62px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: 0px 5px 0px 30px;
+}
+
+.gameoverhit h4 {
+  color: rgb(241,184,42);
+  font-size: 23px;
+  font-family: 'Abel', sans-serif;
+  text-align: left;
+  margin: -19px 5px 0px 39px;
+}
+
 
 @-webkit-keyframes animateRoad {
   0% {
@@ -104,7 +180,7 @@ h1 {
   /*position: absolute;*/
   position: relative;
   /*background-color: grey;*/
-  background-image: url("../images/bgtest3.jpg");
+  background-image: url("../images/bgtest4.jpg");
   background-position:  -3000px 0;
   -webkit-animation: animateRoad 5s infinite linear;
   margin: 0 auto;
@@ -121,7 +197,10 @@ h1 {
 #bike {
   width: 100px;
   height: 60px;
-  background-color: tan;
+  /*background-color: tan;*/
+  background-image: url("../images/bike.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   position: absolute;
   top: 200px;
   left: 100px;
@@ -187,10 +266,14 @@ h1 {
 }
 
 .bottombox {
-     position:absolute;
-     bottom:0;
-     width:100%;
-     /*background: yellow;*/
-     text-align: center;
-     padding-bottom: 75px;
+   position:absolute;
+   bottom:0;
+   width:100%;
+   /*background: yellow;*/
+   text-align: center;
+   padding-bottom: 86px;
+   font-size: 20px;
+   font-family: 'Abel', sans-serif;
+   line-height: 58%;
+   color: rgb(46, 111, 200);
 }
