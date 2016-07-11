@@ -64,17 +64,35 @@ h1 {
   font-size:32px;
 }
 
+@-webkit-keyframes animateRoad {
+  0% {
+    background-position: -2000px 0;
+  }
+
+  99% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
+}
+
 .board {
   width: 500px;
   height: 500px;
   /*position: absolute;*/
   position: relative;
-  background-color: grey;
+  /*background-color: grey;*/
+  background-image: url("../images/bgtest3.jpg");
+  background-position:  -3000px 0;
+  -webkit-animation: animateRoad 5s infinite linear;
   margin: 0 auto;
   z-index: 10;
   display: none;
   overflow: hidden;
 }
+
 .board p {
   text-align: right;
 }
