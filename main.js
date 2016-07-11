@@ -67,7 +67,7 @@ $(function() {
       //                           'top': '130px',
       //                           'left': '600px'});
       $( ".car[id*='topR']").css({'background-image': 'url("./images/blackcab.png")',
-                                'top': '130px',
+                                'top': '125px',
                                 'left': '600px'});
       $( ".car[id*='bottomR']").css({'background-image': 'url("./images/bluecar.png")',
                                 'top': '130px',
@@ -83,7 +83,7 @@ $(function() {
                                 'top': '320px',
                                 'left': '-300px'});
       $( ".car[id*='topL']").css({'background-image': 'url("./images/yellowcar.png")',
-                                'top': '320px',
+                                'top': '315px',
                                 'left': '-300px'});
 
     }
