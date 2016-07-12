@@ -95,7 +95,7 @@ $(function() {
     var $car = $("<div class=\"car\" id=\"car" + lane + carTrackingNumber + "\"></div>");
     $(".board").append($car);
     carsOnScreen.push("#car" + lane + carTrackingNumber);
-    console.log(carsOnScreen + ' COS');
+    // console.log(carsOnScreen + ' COS');
     numberOfCars += 1;
   }
 
@@ -126,8 +126,8 @@ $(function() {
         (function(i){
           // console.log(i, "playGame");
           setTimeout(function() {
-            console.log(i, "setInterval");
-            console.log(carsOnScreen.length);
+            // console.log(i, "setInterval");
+            // console.log(carsOnScreen.length);
               // function loop() {
                 // console.log('Running Loop' + i);
                 // console.log(carsOnScreen[i] + " COS[i] going into moveCar");
@@ -274,8 +274,8 @@ function actuallyMoveCar(carToMove) {
 // Car moving logic, based on what moved before
 // This stops the cars from driving over each other
 function moveCar(carToMove, lastCarMoved) {
-  console.log(carToMove + " moving");
-  console.log(lastCarMoved + " lastCarMoved");
+  // console.log(carToMove + " moving");
+  // console.log(lastCarMoved + " lastCarMoved");
   // for (i=0; i < carsOnScreen.length; i++) {
     // console.log("Car: "+ carToMove + " is the car on the move...");
     // if (carToMove.includes('top')) {
