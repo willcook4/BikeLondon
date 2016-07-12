@@ -2,6 +2,8 @@
 GA WDI Project One
 Will Cook 2016
 
+Play the game here: https://willbikelondon.herokuapp.com/
+
 ![BikeLondonPreview](./images/preview.png)
 
 ### Overview
